@@ -4277,17 +4277,29 @@ GetDamageVarsForPlayerAttack:
 	and a ; check for critical hit
 	jr z, .scaleStats
 ; in the case of a critical hit, reset the player's attack and the enemy's defense to their base values
+; only revert player stat if you have lowered stats
+; only revert opponent stat if they have boosted stats
+	; does the opponent have lowered def?
+	ld a, [wEnemyMonDefenseMod]
+	cp 7 ; neutral
+	jr c, .dontNegateDefense
 	ld c, 3 ; defense stat
 	call GetEnemyMonStat
 	ld a, [H_PRODUCT + 2]
 	ld b, a
 	ld a, [H_PRODUCT + 3]
 	ld c, a
+.dontNegateDefense	
 	push bc
+	; does the player have boosted attack?
+	ld a, [wPlayerMonAttackMod]
+	cp 7 ; neutral
+	jr nc, .dontNegateAttack
 	ld hl, wPartyMon1Attack
 	ld a, [wPlayerMonNumber]
 	ld bc, wPartyMon2 - wPartyMon1
 	call AddNTimes
+.dontNegateAttack
 	pop bc
 	jr .scaleStats
 .specialAttack
@@ -4309,17 +4321,29 @@ GetDamageVarsForPlayerAttack:
 	and a ; check for critical hit
 	jr z, .scaleStats
 ; in the case of a critical hit, reset the player's and enemy's specials to their base values
+; only revert player stat if you have lowered stats
+; only revert opponent stat if they have boosted stats
+	; does the enemy have lowered special?
+	ld a, [wEnemyMonSpecialMod]
+	cp 7 ; neutral
+	jr c, .dontNegateSpecial1
 	ld c, 5 ; special stat
 	call GetEnemyMonStat
 	ld a, [H_PRODUCT + 2]
 	ld b, a
 	ld a, [H_PRODUCT + 3]
 	ld c, a
+.dontNegateSpecial1
 	push bc
+	; does the player have boosted special?
+	ld a, [wPlayerMonSpecialMod]
+	cp 7 ; neutral
+	jr nc, .dontNegateSpecial2
 	ld hl, wPartyMon1Special
 	ld a, [wPlayerMonNumber]
 	ld bc, wPartyMon2 - wPartyMon1
 	call AddNTimes
+.dontNegateSpecial2
 	pop bc
 ; if either the offensive or defensive stat is too large to store in a byte, scale both stats by dividing them by 4
 ; this allows values with up to 10 bits (values up to 1023) to be handled
@@ -4390,6 +4414,12 @@ GetDamageVarsForEnemyAttack:
 	and a ; check for critical hit
 	jr z, .scaleStats
 ; in the case of a critical hit, reset the player's defense and the enemy's attack to their base values
+; only revert player stat if you have boosted stats
+; only revert opponent if they have lowered stats
+	; does the player have lowered def?
+	ld a, [wPlayerMonDefenseMod]
+	cp 7 ; neutral
+	jr c, .dontNegateDefense
 	ld hl, wPartyMon1Defense
 	ld a, [wPlayerMonNumber]
 	ld bc, wPartyMon2 - wPartyMon1
@@ -4397,10 +4427,16 @@ GetDamageVarsForEnemyAttack:
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
+.dontNegateDefense
 	push bc
+	; does the opponent have boosted attack?
+	ld a, [wEnemyMonAttackMod]
+	cp 7 ; neutral
+	jr nc, .dontNegateAttack
 	ld c, 2 ; attack stat
 	call GetEnemyMonStat
 	ld hl, H_PRODUCT + 2
+.dontNegateAttack
 	pop bc
 	jr .scaleStats
 .specialAttack
@@ -4422,6 +4458,12 @@ GetDamageVarsForEnemyAttack:
 	and a ; check for critical hit
 	jr z, .scaleStats
 ; in the case of a critical hit, reset the player's and enemy's specials to their base values
+; only revert player stat if you have boosted stats
+; only revert opponent if they have lowered stats
+	; does the player have lowered special?
+	ld a, [wPlayerMonSpecialMod]
+	cp 7 ; neutral
+	jr c, .dontNegateSpecial1
 	ld hl, wPartyMon1Special
 	ld a, [wPlayerMonNumber]
 	ld bc, wPartyMon2 - wPartyMon1
@@ -4429,10 +4471,16 @@ GetDamageVarsForEnemyAttack:
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
+.dontNegateSpecial1
 	push bc
+	; does the opponent have boosted special?
+	ld a, [wEnemyMonSpecialMod]
+	cp 7 ; neutral
+	jr nc, .dontNegateSpecial2
 	ld c, 5 ; special stat
 	call GetEnemyMonStat
 	ld hl, H_PRODUCT + 2
+.dontNegateSpecial2
 	pop bc
 ; if either the offensive or defensive stat is too large to store in a byte, scale both stats by dividing them by 4
 ; this allows values with up to 10 bits (values up to 1023) to be handled
@@ -4476,6 +4524,7 @@ GetDamageVarsForEnemyAttack:
 ; get stat c of enemy mon
 ; c: stat to get (HP=1,Attack=2,Defense=3,Speed=4,Special=5)
 GetEnemyMonStat:
+	push hl
 	push de
 	push bc
 	ld a, [wLinkState]
@@ -4495,6 +4544,7 @@ GetEnemyMonStat:
 	ld [H_MULTIPLICAND + 2], a
 	pop bc
 	pop de
+	pop hl
 	ret
 .notLinkBattle
 	ld a, [wEnemyMonLevel]
@@ -4514,6 +4564,7 @@ GetEnemyMonStat:
 	ld hl, wLoadedMonSpeedExp - $b ; this base address makes CalcStat look in [wLoadedMonSpeedExp] for DVs
 	call CalcStat
 	pop de
+	pop hl
 	ret
 
 CalculateDamage:
@@ -4708,7 +4759,6 @@ CriticalHitTest:
 	call GetMonHeader
 	ld a, [wMonHBaseSpeed]
 	ld b, a
-	srl b                        ; (effective (base speed/2))
 	ld a, [H_WHOSETURN]
 	and a
 	ld hl, wPlayerMovePower
@@ -4724,14 +4774,11 @@ CriticalHitTest:
 	ld c, [hl]                   ; read move id
 	ld a, [de]
 	bit GETTING_PUMPED, a         ; test for focus energy
-	jr nz, .focusEnergyUsed      ; bug: using focus energy causes a shift to the right instead of left,
-	                             ; resulting in 1/4 the usual crit chance
-	sla b                        ; (effective (base speed/2)*2)
-	jr nc, .noFocusEnergyUsed
-	ld b, $ff                    ; cap at 255/256
-	jr .noFocusEnergyUsed
-.focusEnergyUsed
-	srl b
+	jr z, .noFocusEnergyUsed
+	sla b
+	jr c, .guaranteedCritical
+	sla b
+	jr c, .guaranteedCritical
 .noFocusEnergyUsed
 	ld hl, HighCriticalMoves     ; table of high critical hit moves
 .Loop
@@ -4756,7 +4803,8 @@ CriticalHitTest:
 	rlc a
 	rlc a
 	cp b                         ; check a against calculated crit rate
-	ret nc                       ; no critical hit if no borrow
+	ret nc	; no critical hit if no borrow
+.guaranteedCritical
 	ld a, $1
 	ld [wCriticalHitOrOHKO], a   ; set critical hit flag
 	ret
