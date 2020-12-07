@@ -1,12 +1,12 @@
 _CeruleanHouse2Text_74e77::
-	text "#MON BADGEs"
+	text "#mon Badges"
 	line "are owned only by"
 	cont "skilled trainers."
 
 	para "I see you have"
 	line "at least one."
 
-	para "Those BADGEs have"
+	para "Those Badges have"
 	line "amazing secrets!"
 	prompt
 
@@ -14,7 +14,7 @@ _CeruleanHouse2Text_74e7c::
 	text "Now then..."
 
 	para "Which of the 8"
-	line "BADGEs should I"
+	line "Badges should I"
 	cont "describe?"
 	done
 
@@ -25,7 +25,7 @@ _CeruleanHouse2Text_74e81::
 
 _CeruleanHouse2Text_74e96::
 	text "The ATTACK of all"
-	line "#MON increases"
+	line "#mon increases"
 	cont "a little bit."
 
 	para "It also lets you"
@@ -34,7 +34,7 @@ _CeruleanHouse2Text_74e96::
 	prompt
 
 _CeruleanHouse2Text_74e9b::
-	text "#MON up to L30"
+	text "#mon up to L30"
 	line "will obey you."
 
 	para "Any higher, they"
@@ -47,7 +47,7 @@ _CeruleanHouse2Text_74e9b::
 
 _CeruleanHouse2Text_74ea0::
 	text "The SPEED of all"
-	line "#MON increases"
+	line "#mon increases"
 	cont "a little bit."
 
 	para "It also lets you"
@@ -56,7 +56,7 @@ _CeruleanHouse2Text_74ea0::
 	prompt
 
 _CeruleanHouse2Text_74ea5::
-	text "#MON up to L50"
+	text "#mon up to L50"
 	line "will obey you."
 
 	para "Any higher, they"
@@ -69,7 +69,7 @@ _CeruleanHouse2Text_74ea5::
 
 _CeruleanHouse2Text_74eaa::
 	text "The DEFENSE of all"
-	line "#MON increases"
+	line "#mon increases"
 	cont "a little bit."
 
 	para "It also lets you"
@@ -78,7 +78,7 @@ _CeruleanHouse2Text_74eaa::
 	prompt
 
 _CeruleanHouse2Text_74eaf::
-	text "#MON up to L70"
+	text "#mon up to L70"
 	line "will obey you."
 
 	para "Any higher, they"
@@ -86,12 +86,12 @@ _CeruleanHouse2Text_74eaf::
 	prompt
 
 _CeruleanHouse2Text_74eb4::
-	text "Your #MON's"
+	text "Your #mon's"
 	line "SPECIAL abilities"
 	cont "increase a bit."
 	prompt
 
 _CeruleanHouse2Text_74eb9::
-	text "All #MON will"
+	text "All #mon will"
 	line "obey you!"
 	prompt

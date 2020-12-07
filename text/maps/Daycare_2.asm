@@ -6,28 +6,28 @@ _DayCareComeAgainText::
 	text "come again."
 	done
 
-_DayCareNoRoomForMonText::
+_DayCareNoRoomFormonText::
 	text "You have no room"
-	line "for this #MON!"
+	line "for this #mon!"
 	done
 
-_DayCareOnlyHaveOneMonText::
+_DayCareOnlyHaveOnemonText::
 	text "You only have one"
-	line "#MON with you."
+	line "#mon with you."
 	done
 
-_DayCareCantAcceptMonWithHMText::
+_DayCareCantAcceptmonWithHMText::
 	text "I can't accept a"
-	line "#MON that"
+	line "#mon that"
 	cont "knows an HM move."
 	done
 
-_DayCareHeresYourMonText::
+_DayCareHeresYourmonText::
 	text "Thank you! Here's"
-	line "your #MON!"
+	line "your #mon!"
 	prompt
 
-_DayCareNotEnoughMoneyText::
+_DayCareNotEnoughmoneyText::
 	text "Hey, you don't"
 	line "have enough ¥!"
 	done

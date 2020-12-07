@@ -1,6 +1,6 @@
 _TM18PreReceiveText::
 	text "Oh, hi! I finally"
-	line "finished #MON!"
+	line "finished #mon!"
 
 	para "Not done yet?"
 	line "This might be"
@@ -14,7 +14,7 @@ _ReceivedTM18Text::
 	text "!@@"
 
 _TM18ExplanationText::
-	text "TM18 is COUNTER!"
+	text "TM18 is Counter!"
 	line "Not like the one"
 	cont "I'm leaning on,"
 	cont "mind you!"
@@ -26,7 +26,7 @@ _TM18NoRoomText::
 	done
 
 _CeladonMart3Text2::
-	text "Captured #MON"
+	text "Captured #mon"
 	line "are registered"
 	cont "with an ID No."
 	cont "and OT, the name"
@@ -40,52 +40,54 @@ _CeladonMart3Text3::
 
 	para "My buddy's going"
 	line "to trade me his"
-	cont "KANGASKHAN for my"
-	cont "GRAVELER!"
+	cont "Kangaskhan for my"
+	cont "Graveler!"
 	done
 
 _CeladonMart3Text4::
-	text "Come on GRAVELER!"
+	text "Come on Graveler!"
 
-	para "I love GRAVELER!"
+	para "I love Graveler!"
 	line "I collect them!"
 
 	para "Huh?"
 
-	para "GRAVELER turned"
+	para "Graveler turned"
 	line "into a different"
-	cont "#MON!"
+	cont "#mon!"
 	done
 
 _CeladonMart3Text5::
 	text "You can identify"
-	line "#MON you got"
+	line "#mon you got"
 	cont "in trades by"
 	cont "their ID Numbers!"
 	done
 
 _CeladonMart3Text6::
-	text "It's an SNES!"
+	text "It's a Switch!"
 	done
 
 _CeladonMart3Text7::
-	text "An RPG! There's"
-	line "no time for that!"
+	text "Sword and Shield!"
+	line "Those games suck!"
 	done
 
 _CeladonMart3Text9::
-	text "A sports game!"
-	line "Dad'll like that!"
+	text "Animal Crossing!"
+	line "Mmmm Isabelle..."
 	done
 
 _CeladonMart3Text11::
-	text "A puzzle game!"
-	line "Looks addictive!"
+	text "Oh look. Another"
+	line "Skyrim port."
 	done
 
 _CeladonMart3Text13::
-	text "A fighting game!"
-	line "Looks tough!"
+	text "Super Smash"
+	line "Bros. Ultimate."
+	cont "Don't show the"
+	cont "Melee nerds!"
 	done
 
 _CeladonMart3Text14::
@@ -94,5 +96,5 @@ _CeladonMart3Text14::
 
 _CeladonMart3Text15::
 	text "Red and Blue!"
-	line "Both are #MON!"
+	line "Both are #mon!"
 	done
