@@ -5,12 +5,12 @@ _DayCareIntroText::
 	cont "your #mon?"
 	done
 
-_DayCareWhichmonText::
+_DayCareWhichMonText::
 	text "Which #mon"
 	line "should I raise?"
 	prompt
 
-_DayCareWillLookAftermonText::
+_DayCareWillLookAfterMonText::
 	text "Fine, I'll look"
 	line "after @"
 	TX_RAM wcd6d
@@ -23,7 +23,7 @@ _DayCareComeSeeMeInAWhileText::
 	line "a while."
 	done
 
-_DayCaremonHasGrownText::
+_DayCareMonHasGrownText::
 	text "Your @"
 	TX_RAM wcd6d
 	text ""
@@ -37,7 +37,7 @@ _DayCaremonHasGrownText::
 	para "Aren't I great?"
 	prompt
 
-_DayCareOwemoneyText::
+_DayCareOweMoneyText::
 	text "You owe me ¥@"
 	TX_BCD wDayCareTotalCost, $c2
 	text ""
@@ -45,14 +45,14 @@ _DayCareOwemoneyText::
 	cont "of this #mon."
 	done
 
-_DayCareGotmonBackText::
+_DayCareGotMonBackText::
 	text "<PLAYER> got"
 	line "@"
-	TX_RAM wDayCare#monName
+	TX_RAM wDayCareMonName
 	text " back!"
 	done
 
-_DayCaremonNeedsMoreTimeText::
+_DayCareMonNeedsMoreTimeText::
 	text "Back already?"
 	line "Your @"
 	TX_RAM wcd6d
