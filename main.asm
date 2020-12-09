@@ -23,8 +23,6 @@ INCLUDE "engine/black_out.asm"
 ; Mew sprites removed from here
 SECTION "Mew Base Stats",ROMX
 
-INCLUDE "data/baseStats/mew.asm"
-
 INCLUDE "engine/battle/safari_zone.asm"
 
 INCLUDE "engine/titlescreen.asm"
@@ -753,7 +751,6 @@ INCLUDE "engine/game_corner_slots.asm"
 SECTION "bankE", ROMX
 
 INCLUDE "data/moves.asm"
-BaseStats: INCLUDE "data/base_stats.asm"
 INCLUDE "data/cries.asm"
 INCLUDE "engine/battle/unused_stats_functions.asm"
 INCLUDE "engine/battle/scroll_draw_trainer_pic.asm"
@@ -2032,6 +2029,9 @@ INCLUDE "engine/items/tm_prices.asm"
 INCLUDE "color/animations.asm"
 
 ; Inserted pokemon images go here
+
+SECTION "bank30",ROMX
+BaseStats: INCLUDE "data/base_stats.asm"
 
 IF GEN_2_GRAPHICS
 SECTION "bank32",ROMX

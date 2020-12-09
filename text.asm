@@ -29,7 +29,7 @@ _CardKeySuccessText1::
 
 _CardKeySuccessText2::
 	text ""
-	line "The CARD KEY"
+	line "The Card Key"
 	cont "opened the door!"
 	done
 
