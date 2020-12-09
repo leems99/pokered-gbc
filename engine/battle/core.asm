@@ -2149,7 +2149,7 @@ DisplayBattleMenu:
 	ld a, $2 ; select the "ITEM" menu
 	jp .upperLeftMenuItemWasNotSelected
 .oldManName
-	db "OLD MAN@"
+	db "Old Man@"
 .handleBattleMenuInput
 	ld a, [wBattleAndStartSavedMenuItem]
 	ld [wCurrentMenuItem], a
@@ -2781,7 +2781,7 @@ MoveDisabledText:
 	db "@"
 
 WhichTechniqueString:
-	db "WHICH TECHNIQUE?@"
+	db "Which Technique?@"
 
 SelectMenuItem_CursorUp:
 	ld a, [wCurrentMenuItem]
@@ -3001,10 +3001,10 @@ PrintMenuItem:
 	jp Delay3
 
 DisabledText:
-	db "disabled!@"
+	db "Disabled!@"
 
 TypeText:
-	db "TYPE@"
+	db "Type@"
 
 SelectEnemyMove:
 	ld a, [wLinkState]
@@ -6988,13 +6988,13 @@ InitWildBattle:
 	ld hl, wEnemyMonNick  ; set name to "GHOST"
 	ld a, "G"
 	ld [hli], a
-	ld a, "H"
+	ld a, "h"
 	ld [hli], a
-	ld a, "O"
+	ld a, "o"
 	ld [hli], a
-	ld a, "S"
+	ld a, "s"
 	ld [hli], a
-	ld a, "T"
+	ld a, "t"
 	ld [hli], a
 	ld [hl], "@"
 	ld a, [wcf91]
@@ -8051,12 +8051,12 @@ PrintStatText:
 	jp CopyData
 
 StatsTextStrings:
-	db "ATTACK@"
-	db "DEFENSE@"
-	db "SPEED@"
-	db "SPECIAL@"
-	db "ACCURACY@"
-	db "EVADE@"
+	db "Attack@"
+	db "Defense@"
+	db "Speed@"
+	db "Special@"
+	db "Accuracy@"
+	db "Evasion@"
 
 StatModifierRatios:
 ; first byte is numerator, second byte is denominator
